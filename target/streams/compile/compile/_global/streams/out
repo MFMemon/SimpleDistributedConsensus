@@ -1,0 +1,30 @@
+[0m[[0m[31merror[0m] [0m[0m[31m-- [E007] Type Mismatch Error: /home/mfmemon/shared/ScalaProjects/simpledistributedconsensus/simpledistributedconsensus/src/main/scala/Server.scala:157:4 [0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m157 |[0m    Protocol.ClientNodeMsg.decoder[0m
+[0m[[0m[31merror[0m] [0m[0m    |    [31m^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m    |Found:    akka.stream.scaladsl.Flow[akka.util.ByteString, [1m[31mMatchable[0m, akka.NotUsed][0m
+[0m[[0m[31merror[0m] [0m[0m    |Required: akka.stream.scaladsl.Flow[akka.util.ByteString, [1m[32makka[0m[1m[32m.[0m[1m[32mutil[0m[1m[32m.[0m[1m[32mByteString[0m, [0m
+[0m[[0m[31merror[0m] [0m[0m    |[1m[32m [0m[1m[32m [0makka.NotUsed[0m
+[0m[[0m[31merror[0m] [0m[0m    |][0m
+[0m[[0m[31merror[0m] [0m[0m[31m158 |[0m      [34m// .via(ActorFlow.ask[Try[AbstractClientNodeMsg[_]], ActorCommand, BaseServerClientNodeMsg][0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m159 |[0m      [34m// (leaderActor){(elem, replyTo) =>[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m160 |[0m      [34m//   elem match[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m161 |[0m      [34m//     case Success(msg) => [0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m162 |[0m      [34m//       msg match[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m163 |[0m      [34m//         case Join(name) =>  [0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m164 |[0m      [34m//           system.log.info(s"Node ${name} has joined the cluster")[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m165 |[0m      [34m//           AddNode(name, ref)[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m166 |[0m      [34m//         case Poll(vote, amount, id, name) =>[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m167 |[0m      [34m//           AddNodePoll(vote, amount, id, name)          [0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m168 |[0m      [34m// })[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m169 |[0m      .collect{[0m
+[0m[[0m[31merror[0m] [0m[0m[31m170 |[0m        [33mcase[0m Success(msg) => [0m
+[0m[[0m[31merror[0m] [0m[0m[31m171 |[0m          msg [33mmatch[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m172 |[0m            [33mcase[0m Join(name) =>  [0m
+[0m[[0m[31merror[0m] [0m[0m[31m173 |[0m              system.log.info([31ms"Node [0m${name}[31m has joined the cluster"[0m)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m174 |[0m              leaderActor ! AddNode(name, ref)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m175 |[0m            [33mcase[0m Poll(vote, amount, id, name) =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m176 |[0m              leaderActor ! AddNodePoll(vote, amount, id, name)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m177 |[0m      }[0m
+[0m[[0m[31merror[0m] [0m[0m[31m178 |[0m      .merge(source.via(Protocol.ServerClientNodeMsg.encoder))[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
